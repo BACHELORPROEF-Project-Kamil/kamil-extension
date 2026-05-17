@@ -1,0 +1,26 @@
+name: Kamil Extension CI
+
+on:
+  push:
+    branches: [main, feat/*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate Manifest JSON
+        run: |
+          if ! node -e "JSON.parse(require('fs').readFileSync('manifest.json'))"; then
+            echo "Error: manifest.json is not valid JSON."
+            exit 1
+          fi
+          echo "manifest.json is valid."
