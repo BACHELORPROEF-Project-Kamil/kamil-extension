@@ -1,0 +1,47 @@
+body {
+	width: 300px;
+	padding: 10px;
+	font-family: sans-serif;
+	margin: 0;
+	color: #333;
+}
+
+h2 {
+	margin-top: 0;
+	font-size: 1.2em;
+}
+
+h3 {
+	font-size: 1em;
+	margin-bottom: 10px;
+}
+
+.toggle-container {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+}
+
+#urlDisplay {
+	font-size: 0.8em;
+	color: #666;
+	margin-bottom: 5px;
+	word-break: break-all;
+}
+
+#rawOutput {
+	background: #f4f4f4;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	font-size: 0.8em;
+	max-height: 200px;
+}
+
+hr {
+	border: 0;
+	border-top: 1px solid #eee;
+	margin: 15px 0;
+}
