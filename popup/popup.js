@@ -1,33 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-	const toggle = document.getElementById("protectionToggle");
-	const rawOutput = document.getElementById("rawOutput");
-	const urlDisplay = document.getElementById("urlDisplay");
+const toggle = document.getElementById('protection-toggle');
 
-	chrome.storage.local.get(["protectionEnabled", "lastResult", "lastCheckedUrl"], (result) => {
-		toggle.checked = result.protectionEnabled || false;
-		updateDisplay(result.lastResult, result.lastCheckedUrl);
-	});
+chrome.storage.local.get(['protectionEnabled'], (result) => {
+  toggle.checked = !!result.protectionEnabled;
+  console.log('Kamil Protection:', toggle.checked ? 'ENABLED' : 'DISABLED');
+});
 
-	toggle.addEventListener("change", () => {
-		chrome.storage.local.set({ protectionEnabled: toggle.checked });
-	});
-
-	chrome.storage.onChanged.addListener((changes, namespace) => {
-		if (namespace === "local") {
-			chrome.storage.local.get(["lastResult", "lastCheckedUrl"], (result) => {
-				updateDisplay(result.lastResult, result.lastCheckedUrl);
-			});
-		}
-	});
-
-	function updateDisplay(result, url) {
-		if (url) {
-			urlDisplay.textContent = `Checked: ${url}`;
-		}
-		if (result) {
-			rawOutput.textContent = JSON.stringify(result, null, 2);
-		} else {
-			rawOutput.textContent = "No results yet.";
-		}
-	}
+toggle.addEventListener('change', () => {
+  const enabled = toggle.checked;
+  chrome.storage.local.set({ protectionEnabled: enabled }, () => {
+    console.log('Kamil Protection toggled:', enabled ? 'ON' : 'OFF');
+  });
 });
