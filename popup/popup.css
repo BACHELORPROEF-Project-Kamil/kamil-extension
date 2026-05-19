@@ -8,30 +8,51 @@
 
 :root {
 	--green: #054431;
+	--accent-green: #EEF9F4;
+	--plane-white: #FFFFFF;
 
 	--width-container: 420px;
 }
 
 .nav-container,
-.nav-toggle-protection {
+.nav-toggle-protection,
+.container {
 	display: flex;
 }
 
 .container {
 	border: 3px solid var(--green);
 	width: var(--width-container);
+	background-color: var(--accent-green);
+
+	flex-direction: column;
+	gap: 24px;
 }
 
 .nav-container {
-	width: calc(var(--width-container) - 64px);
+	width: 100%;
 	margin: auto;
+	background-color: var(--plane-white);
 	justify-content: space-between;
-	padding: 16px 0px;
+	padding: 16px 32px;
 }
 
 .nav-toggle-protection {
 	gap: 8px;
 	align-items: center;
+}
+
+.kamil-indicator {
+	width: calc(var(--width-container) / 2);
+	margin: auto;
+	background-color: var(--plane-white);
+	border-radius: 100%;
+	border: 5px solid var(--green);
+}
+
+.kamil-indicator img {
+	width: 100%;
+	padding: 24px;
 }
 
 
