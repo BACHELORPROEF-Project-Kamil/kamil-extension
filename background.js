@@ -9,7 +9,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         return;
       }
 
-      console.log('🔍 Checking URL:', tab.url);
+      console.log('Checking URL:', tab.url);
       
       fetch('http://localhost:5001/api/v1/check', {
         method: 'POST',
@@ -17,8 +17,20 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         body: JSON.stringify({ url: tab.url, uid: 'arno-test-001' })
       })
       .then(res => res.json())
-      .then(data => console.log('Result:', data))
-      .catch(err => console.error('Error:', err.message));
+      .then(data => {
+        console.log('API Result:', data);
+        if (data.status) {
+          data.status = data.status.toLowerCase();
+        }
+        chrome.storage.local.set({ lastResult: data }, () => {
+          console.log('LastResult stored:', data.status);
+        });
+      })
+      .catch(err => {
+        console.error('Fetch Error:', err.message);
+        chrome.storage.local.remove('lastResult');
+      });
+
     });
   }
 });
