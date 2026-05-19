@@ -15,7 +15,7 @@
 				<div class="nav-toggle-protection">
 					<p>Phishing Bescherming</p>
 					<label class="switch">
-						<input type="checkbox" />
+						<input type="checkbox" id="protection-toggle" />
 						<span class="slider round"></span>
 					</label>
 				</div>
@@ -23,14 +23,13 @@
 
 			<div class="kamil-indicator">
 				<div class="indicator-status">
-					<img src="../icons/kamilGreen.webp" alt="Kamil die met duim omhoog staat"/>
+					<img id="kamil-img" src="../icons/kamilGreen.webp" alt="Kamil status indicator" />
 				</div>
 			</div>
 
 			<div class="message">
-				<span class="message-indicator">Alles is veilig.</span>
-				<p>Kamil houdt de wacht...</p>
-				<p>u kunt veilig surfen.</p>
+				<span id="status-title" class="message-indicator">Alles is veilig.</span>
+				<p id="status-desc">Kamil houdt de wacht...</p>
 				<a href="#" class="read-more">Lees meer over veilig surfen</a>
 			</div>
 
@@ -39,5 +38,6 @@
 				<a href="#">Rapporteer deze website</a>
 			</div>
 		</div>
+		<script src="popup.js"></script>
 	</body>
 </html>

@@ -1,30 +1,36 @@
-chrome.runtime.onInstalled.addListener(() => {
-	chrome.storage.local.set({ protectionEnabled: false, lastResult: null });
-});
+console.log('Kamil Background Script Loaded');
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-	if (changeInfo.status === "complete" && tab.url && tab.url.startsWith("http")) {
-		chrome.storage.local.get(["protectionEnabled"], (result) => {
-			if (result.protectionEnabled) {
-				checkUrl(tab.url);
-			}
-		});
-	}
-});
+  if (changeInfo.status === 'complete' && tab.url?.startsWith('http')) {
+    
+    chrome.storage.local.get(['protectionEnabled'], (result) => {
+      if (!result.protectionEnabled) {
+        console.log('Protection DISABLED. Skipping check for:', tab.url);
+        return;
+      }
 
-async function checkUrl(url) {
-	try {
-		const response = await fetch("http://localhost:5001/api/v1/check", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ url: url }),
-		});
-		const data = await response.json();
-		chrome.storage.local.set({ lastResult: data, lastCheckedUrl: url });
-	} catch (error) {
-		console.error("Error checking URL:", error);
-		chrome.storage.local.set({ lastResult: { error: error.message }, lastCheckedUrl: url });
-	}
-}
+      console.log('Checking URL:', tab.url);
+      
+      fetch('http://localhost:5001/api/v1/check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: tab.url, uid: 'arno-test-001' })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('API Result:', data);
+        if (data.status) {
+          data.status = data.status.toLowerCase();
+        }
+        chrome.storage.local.set({ lastResult: data }, () => {
+          console.log('LastResult stored:', data.status);
+        });
+      })
+      .catch(err => {
+        console.error('Fetch Error:', err.message);
+        chrome.storage.local.remove('lastResult');
+      });
+
+    });
+  }
+});
