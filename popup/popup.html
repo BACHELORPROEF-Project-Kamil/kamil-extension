@@ -1,22 +1,43 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 	<head>
-		<title>Kamil Phishing Protection</title>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kamil Phishing Bescherming</title>
 		<link rel="stylesheet" href="popup.css" />
 	</head>
 	<body>
-		<h2>Phishing Protection</h2>
+		<div class="container">
+			<div class="nav-container">
+				<div class="nav-logo">
+					<img src="../icons/logo.svg" alt="Logo" />
+				</div>
+				<div class="nav-toggle-protection">
+					<p>Phishing Bescherming</p>
+					<label class="switch">
+						<input type="checkbox" />
+						<span class="slider round"></span>
+					</label>
+				</div>
+			</div>
 
-		<div class="toggle-container">
-			<label> <input type="checkbox" id="protectionToggle" /> Enable Protection </label>
+			<div class="kamil-indicator">
+				<div class="indicator-status">
+					<img src="../icons/kamilGreen.webp" alt="Kamil die met duim omhoog staat"/>
+				</div>
+			</div>
+
+			<div class="message">
+				<span class="message-indicator">Alles is veilig.</span>
+				<p>Kamil houdt de wacht...</p>
+				<p>u kunt veilig surfen.</p>
+				<a href="#" class="read-more">Lees meer over veilig surfen</a>
+			</div>
+
+			<div class="report-website">
+				<p>Zie jij iets wat ik over het hoofd zag?</p>
+				<a href="#">Rapporteer deze website</a>
+			</div>
 		</div>
-
-		<hr />
-
-		<h3>Last Check Result:</h3>
-		<div id="urlDisplay"></div>
-		<pre id="rawOutput"></pre>
-
-		<script src="popup.js"></script>
 	</body>
 </html>
