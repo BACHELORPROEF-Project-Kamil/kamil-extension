@@ -10,13 +10,15 @@
 	--green: #054431;
 	--accent-green: #EEF9F4;
 	--plane-white: #FFFFFF;
+	--orange: #FF805C;
 
 	--width-container: 420px;
 }
 
 .nav-container,
 .nav-toggle-protection,
-.container {
+.container,
+.message {
 	display: flex;
 }
 
@@ -55,6 +57,22 @@
 	padding: 24px;
 }
 
+.message {
+	flex-direction: column;
+	gap: 8px;
+	align-items: center;
+}
+
+.message-indicator {
+	font-size: 28px;
+	color: var(--green);
+	font-family: "Outfit", sans-serif;
+	font-weight: bold;
+}
+
+.message a {
+	color: var(--orange);
+}
 
 
 
