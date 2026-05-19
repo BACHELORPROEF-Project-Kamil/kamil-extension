@@ -3,14 +3,15 @@
 	padding: 0;
 	box-sizing: border-box;
 
-	font-family: 'Open Sans', sans-serif;
+	font-family: "Open Sans", sans-serif;
 }
 
 :root {
 	--green: #054431;
-	--accent-green: #EEF9F4;
-	--plane-white: #FFFFFF;
-	--orange: #FF805C;
+	--accent-green: #eef9f4;
+	--plane-white: #ffffff;
+	--orange: #ff805c;
+	--red: #ff0000;
 
 	--width-container: 420px;
 }
@@ -18,7 +19,8 @@
 .nav-container,
 .nav-toggle-protection,
 .container,
-.message {
+.message,
+.report-website {
 	display: flex;
 }
 
@@ -74,6 +76,18 @@
 	color: var(--orange);
 }
 
+.report-website {
+	flex-direction: column;
+	align-items: center;
+
+	padding-bottom: 24px;
+}
+
+.report-website a {
+	color: var(--red);
+}
+
+
 
 
 
@@ -91,60 +105,60 @@
 
 /* SWITCH STYLING */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 36px;
-  height: 24px;
+	position: relative;
+	display: inline-block;
+	width: 36px;
+	height: 24px;
 }
 
 .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: var(--green);
+	background-color: var(--green);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--green);
+	box-shadow: 0 0 1px var(--green);
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(12px);
-  -ms-transform: translateX(12px);
-  transform: translateX(12px);
+	-webkit-transform: translateX(12px);
+	-ms-transform: translateX(12px);
+	transform: translateX(12px);
 }
 
 .slider.round {
-  border-radius: 34px;
+	border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+	border-radius: 50%;
 }
